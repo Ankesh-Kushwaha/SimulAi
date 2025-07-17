@@ -1,7 +1,5 @@
 import { clerkClient ,getAuth} from "@clerk/express";
 
-
-
 //middleware to check user id and has premium plan
 export const auth = async (req, res, next) => {
   try {    
@@ -31,4 +29,6 @@ export const auth = async (req, res, next) => {
     })
   }
 }
+
+
 
