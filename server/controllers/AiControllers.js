@@ -70,9 +70,7 @@ export const generateArticle = async (req, res) => {
 export const generateBlogTitle = async (req, res) => {
   try {
     const { userId } = req.auth();
-    console.log(userId);
-    const { prompt} = req.body;
-    console.log(req.body)
+    const {prompt} = req.body;
     const plan = req.plan;
     const free_usage = req.free_usage;
 
@@ -93,7 +91,7 @@ export const generateBlogTitle = async (req, res) => {
             },
       ],
       temperature: 0.7,
-      max_token:100
+      max_tokens:100
     });
 
 
@@ -159,7 +157,6 @@ export const generateImage = async (req, res) => {
 
   }
   catch (err) {
-    console.log(err.message);
     res.json({
       success: false,
       message:err.message,
@@ -171,7 +168,7 @@ export const generateImage = async (req, res) => {
 export const removeImageBackground = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const { image } = req.file;
+    const image = req.file;
     const plan = req.plan;
 
     if (plan !== 'premium') {
@@ -198,7 +195,6 @@ export const removeImageBackground = async (req, res) => {
 
   }
   catch (err) {
-    console.log(err.message);
     res.json({
       success: false,
       message:err.message,
@@ -210,7 +206,7 @@ export const removeImageObject = async (req, res) => {
   try {
     const { userId } = req.auth();
     const { object } = req.body;
-    const { image} = req.file;
+    const  image = req.file;
     const plan = req.plan;
 
     if (plan !== 'premium') {
@@ -239,7 +235,6 @@ export const removeImageObject = async (req, res) => {
 
   }
   catch (err) {
-    console.log(err.message);
     res.json({
       success: false,
       message:err.message,
@@ -252,6 +247,7 @@ export const resumeReview = async (req, res) => {
     const { userId } = req.auth();
     const resume=req.file
     const plan = req.plan;
+   
 
     if (plan !== 'premium') {
       return res.json({
@@ -284,7 +280,7 @@ export const resumeReview = async (req, res) => {
             },
       ],
       temperature: 0.7,
-      max_token:1000
+      max_tokens:1000
     });
    
     const content = response.choices[0].message.content;
