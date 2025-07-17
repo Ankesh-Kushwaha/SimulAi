@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-import { clerkMiddleware, requireAuth } from '@clerk/express'
+import { clerkMiddleware, requireAuth} from '@clerk/express'
 import aiRouter from './routes/aiRoutes.js';
+
 
 const app = express();
 app.use(cors());
@@ -12,10 +13,8 @@ app.use(clerkMiddleware())
 app.get('/', (req,res) => {
   res.send('server is live');
 })
-//to protect our all routes 
 
 app.use(requireAuth());
-
 app.use('/api/ai', aiRouter);
 
 

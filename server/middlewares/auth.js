@@ -1,11 +1,12 @@
-import { clerkClient } from "@clerk/express";
+import { clerkClient ,getAuth} from "@clerk/express";
 
 
 
 //middleware to check user id and has premium plan
 export const auth = async (req, res, next) => {
-  try {
+  try {    
     const { userId, has } = await req.auth();
+    console.log(userId);
     const hasPremiumPlan = await has({ plan: 'premium' });
 
     const user = await clerkClient.users.getUser(userId);

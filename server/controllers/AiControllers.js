@@ -13,7 +13,9 @@ const AI = new OpenAI({
 export const generateArticle = async (req, res) => {
   try {
     const { userId } = req.auth();
+    console.log(userId);
     const { prompt, length } = req.body;
+    console.log(req.body)
     const plan = req.plan;
     const free_usage = req.free_usage;
 
@@ -60,3 +62,6 @@ export const generateArticle = async (req, res) => {
     })
   }
 }
+
+
+
