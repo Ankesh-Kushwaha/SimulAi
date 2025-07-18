@@ -1,1 +1,2 @@
-./Client/.env
+Client/.env
+server/.env
